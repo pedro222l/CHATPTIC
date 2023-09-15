@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #00FF00; /* Cor de fundo verde */
+        }
+        #chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        #message-input {
+            width: 80%;
+            padding: 10px;
+        }
+        #send-button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #message-list {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>PRIV CHAT</h1>
+        <ul id="message-list"></ul>
+        <input type="text" id="message-input" placeholder="Digite sua mensagem">
+        <button id="send-button">Enviar</button>
+    </div>
+
+    <script>
+        const messageList = document.getElementById("message-list");
+        const messageInput = document.getElementById("message-input");
+        const sendButton = document.getElementById("send-button");
+
+        // Função para enviar mensagens
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message !== "") {
+                const messageElement = document.createElement("li");
+                messageElement.textContent = message;
+                messageList.appendChild(messageElement);
+                messageInput.value = "";
+            }
+        }
+
+        // Evento para enviar mensagens ao pressionar Enter
+        messageInput.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        // Evento para enviar mensagens ao clicar no botão "Enviar"
+        sendButton.addEventListener("click", sendMessage);
+    </script>
+</body>
+</html>
